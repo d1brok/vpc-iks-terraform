@@ -43,7 +43,7 @@ variable generation {
 
 variable number_of_zones {
     description = "Number of Availability Zones within a MZR."
-    default     = 2
+    default     = 3
 }
 
 variable classic_access {
@@ -84,20 +84,20 @@ variable prefix_cidr_blocks {
     description = "List of CIDR blocks for the subnets"
     type        = list
     default     = [
-        "10.10.0.0/18", 
-        "10.20.0.0/18", 
+        "10.10.0.0/18",
+        "10.20.0.0/18",
         "10.30.0.0/18"
-    ]  
+    ]
 }
 
 variable subnet_cidr_blocks {
     description = "List of CIDR blocks for the subnets"
     type        = list
     default     = [
-        "10.10.0.0/24", 
-        "10.20.0.0/24", 
+        "10.10.0.0/24",
+        "10.20.0.0/24",
         "10.30.0.0/24"
-    ]  
+    ]
 }
 
 
@@ -126,7 +126,7 @@ variable sg_rules {
         #     "remote": "r010-7583779d-560c-4826-92e0-4b341375dc9e"
         # },
         {
-            # Required by IKS to allow inbound traffic 
+            # Required by IKS to allow inbound traffic
             # to ports 30000 - 32767 of your worker nodes
             "direction": "inbound",
             "ip_version": "ipv4",
@@ -139,3 +139,33 @@ variable sg_rules {
 }
 
 ##############################################################################
+
+##############################################################################
+# Cluster Variables
+##############################################################################
+
+variable cluster_name {
+  description = "name for the iks cluster"
+  default     = "demo-cluster"
+}
+
+variable machine_type {
+  description = "Machine type for the IKS Cluster"
+  default     = "cx2.2x4"
+}
+
+
+variable worker_count {
+  description = "Number of workers per zone"
+  default     = 1
+}
+
+variable disable_pse {
+  description = "Disable public service endpoint for cluster. True or false"
+  default     = false
+}
+
+variable enable_albs {
+  description = "Enable ALBs for cluster"
+  default     = true
+}

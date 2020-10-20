@@ -14,20 +14,17 @@ resource ibm_container_vpc_cluster cluster {
   wait_till          = "OneWorkerNodeReady"
 
   zones {
-    # subnet_id = element(data.ibm_schematics_output.vpc_workspace.output_values.subnet_ids, 0)
-    subnet_id = "02b7-810e14e9-767a-4a5d-9f1b-487e5c7150a4"
+    subnet_id = ibm_is_subnet.subnet1.id
     name      = "${var.ibm_region}-1"
   }
   zones {
-    # subnet_id = element(data.ibm_schematics_output.vpc_workspace.output_values.subnet_ids, 1)
-    subnet_id = "02c7-c60eba3b-6cfb-4256-bd4a-d5c3bb90ad71"
+    subnet_id = ibm_is_subnet.subnet2.id
     name      = "${var.ibm_region}-2"
   }
-  # zones {
-  # #   subnet_id = element(data.ibm_schematics_output.vpc_workspace.output_values.subnet_ids, 2)
-  #   subnet_id = "${data.ibm_schematics_output.vpc_workspace.output_values.subnet_ids[2]}"
-  #   name      = "${var.ibm_region}-3"
-  # }
+  zones {
+    subnet_id = ibm_is_subnet.subnet3.id
+     name      = "${var.ibm_region}-3"
+  }
 
   disable_public_service_endpoint = var.disable_pse
 }
@@ -40,13 +37,13 @@ resource ibm_container_vpc_cluster cluster {
 ##############################################################################
 
 resource ibm_container_vpc_alb alb {
-  count  = "6" 
-  
+  count  = "6"
+
   alb_id = element(ibm_container_vpc_cluster.cluster.albs.*.id, count.index)
   enable = "${
-    var.enable_albs && !var.only_private_albs 
+    var.enable_albs && !var.only_private_albs
     ? true
-    : var.only_private_albs && element(ibm_container_vpc_cluster.cluster.albs.*.alb_type, count.index) != "public" 
+    : var.only_private_albs && element(ibm_container_vpc_cluster.cluster.albs.*.alb_type, count.index) != "public"
       ? true
       : false
   }"
