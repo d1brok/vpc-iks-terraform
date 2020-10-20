@@ -14,15 +14,15 @@ resource ibm_container_vpc_cluster cluster {
   wait_till          = "OneWorkerNodeReady"
 
   zones {
-    subnet_id = ibm_is_subnet.subnet.1.id
+    subnet_id = ibm_is_subnet.subnet1.id
     name      = "${var.ibm_region}-1"
   }
   zones {
-    subnet_id = ibm_is_subnet.subnet.2.id
+    subnet_id = ibm_is_subnet.subnet2.id
     name      = "${var.ibm_region}-2"
   }
   zones {
-    subnet_id = ibm_is_subnet.subnet.3.id
+    subnet_id = ibm_is_subnet.subnet3.id
      name      = "${var.ibm_region}-3"
   }
 
