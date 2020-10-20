@@ -28,25 +28,3 @@ resource ibm_container_vpc_cluster cluster {
 
   disable_public_service_endpoint = var.disable_pse
 }
-
-##############################################################################
-
-
-##############################################################################
-# Enable Private ALBs, disable public
-##############################################################################
-
-resource ibm_container_vpc_alb alb {
-  count  = "6"
-
-  alb_id = element(ibm_container_vpc_cluster.cluster.albs.*.id, count.index)
-  enable = "${
-    var.enable_albs && !var.only_private_albs
-    ? true
-    : var.only_private_albs && element(ibm_container_vpc_cluster.cluster.albs.*.alb_type, count.index) != "public"
-      ? true
-      : false
-  }"
-}
-
-##############################################################################
