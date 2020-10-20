@@ -68,8 +68,6 @@ resource ibm_is_subnet subnet2 {
 }
 
 resource ibm_is_subnet subnet3 {
-  count = var.number_of_zones
-
   name            = "${var.unique_id}-subnet-3"
   vpc             = ibm_is_vpc.vpc.id
   zone            = "${var.ibm_region}-3"
