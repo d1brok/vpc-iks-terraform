@@ -21,13 +21,25 @@ resource ibm_is_vpc vpc {
 # Create Address Prefixes
 ##############################################################################
 
-resource ibm_is_vpc_address_prefix prefix {
-  count = var.number_of_zones
-
-  name  = "${var.unique_id}-prefix-zone-${count.index + 1}"
-  zone  = "${var.ibm_region}-${(count.index % 3) + 1}"
+resource ibm_is_vpc_address_prefix prefix1 {
+  name  = "${var.unique_id}-prefix-zone-1}"
+  zone  = "${var.ibm_region}-1}"
   vpc   = ibm_is_vpc.vpc.id
-  cidr  = element(var.prefix_cidr_blocks, count.index)
+  cidr  = element(var.prefix_cidr_blocks, 0)
+}
+
+resource ibm_is_vpc_address_prefix prefix2 {
+  name  = "${var.unique_id}-prefix-zone-2}"
+  zone  = "${var.ibm_region}-2}"
+  vpc   = ibm_is_vpc.vpc.id
+  cidr  = element(var.prefix_cidr_blocks, 1)
+}
+
+resource ibm_is_vpc_address_prefix prefix3 {
+  name  = "${var.unique_id}-prefix-zone-3}"
+  zone  = "${var.ibm_region}-2}"
+  vpc   = ibm_is_vpc.vpc.id
+  cidr  = element(var.prefix_cidr_blocks, 2)
 }
 
 
