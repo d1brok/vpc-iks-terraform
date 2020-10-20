@@ -66,7 +66,7 @@ resource ibm_is_subnet subnet1 {
   ipv4_cidr_block = element(var.subnet_cidr_blocks, 1)
   public_gateway  = element(ibm_is_public_gateway.gateway.*.id, 1)
   network_acl     = ibm_is_network_acl.multizone_acl.id
-  depends_on      = [ibm_is_vpc_address_prefix.prefix]
+  depends_on      = [ibm_is_vpc_address_prefix.prefix1]
 }
 
 resource ibm_is_subnet subnet2 {
@@ -76,7 +76,7 @@ resource ibm_is_subnet subnet2 {
   ipv4_cidr_block = element(var.subnet_cidr_blocks, 2)
   public_gateway  = element(ibm_is_public_gateway.gateway.*.id, 2)
   network_acl     = ibm_is_network_acl.multizone_acl.id
-  depends_on      = [ibm_is_vpc_address_prefix.prefix]
+  depends_on      = [ibm_is_vpc_address_prefix.prefix2]
 }
 
 resource ibm_is_subnet subnet3 {
@@ -86,7 +86,7 @@ resource ibm_is_subnet subnet3 {
   ipv4_cidr_block = element(var.subnet_cidr_blocks, 3)
   public_gateway  = element(ibm_is_public_gateway.gateway.*.id, 3)
   network_acl     = ibm_is_network_acl.multizone_acl.id
-  depends_on      = [ibm_is_vpc_address_prefix.prefix]
+  depends_on      = [ibm_is_vpc_address_prefix.prefix3]
 }
 
 
