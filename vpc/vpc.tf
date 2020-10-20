@@ -37,7 +37,7 @@ resource ibm_is_vpc_address_prefix prefix2 {
 
 resource ibm_is_vpc_address_prefix prefix3 {
   name  = "prefix3"
-  zone  = "${var.ibm_region}-2"
+  zone  = "${var.ibm_region}-3"
   vpc   = ibm_is_vpc.vpc.id
   cidr  = element(var.prefix_cidr_blocks, 2)
 }
