@@ -23,21 +23,21 @@ resource ibm_is_vpc vpc {
 
 resource ibm_is_vpc_address_prefix prefix1 {
   name  = "prefix1"
-  zone  = "${var.ibm_region}-1}"
+  zone  = "${var.ibm_region}-1"
   vpc   = ibm_is_vpc.vpc.id
   cidr  = element(var.prefix_cidr_blocks, 0)
 }
 
 resource ibm_is_vpc_address_prefix prefix2 {
   name  = "prefix2"
-  zone  = "${var.ibm_region}-2}"
+  zone  = "${var.ibm_region}-2"
   vpc   = ibm_is_vpc.vpc.id
   cidr  = element(var.prefix_cidr_blocks, 1)
 }
 
 resource ibm_is_vpc_address_prefix prefix3 {
   name  = "prefix3"
-  zone  = "${var.ibm_region}-2}"
+  zone  = "${var.ibm_region}-2"
   vpc   = ibm_is_vpc.vpc.id
   cidr  = element(var.prefix_cidr_blocks, 2)
 }
