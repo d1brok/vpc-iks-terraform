@@ -9,7 +9,7 @@ resource ibm_container_vpc_cluster cluster {
   flavor             = var.machine_type
   worker_count       = var.worker_count
   resource_group_id  = data.ibm_resource_group.resource_group.id
-  kube_version       = "1.18.9"
+  kube_version       = "1.18"
   # Lets Terraform start working with the cluster as soon as a node is available
   wait_till          = "OneWorkerNodeReady"
 
